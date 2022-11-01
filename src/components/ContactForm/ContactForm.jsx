@@ -1,5 +1,4 @@
 import React from 'react';
-import { ContactList } from 'components/ContactList/ContactList';
 import { Form, Input, Btn } from 'components/ContactForm/ContactForm.styled';
 class ContactForm extends React.Component {
   state = {
@@ -23,16 +22,14 @@ class ContactForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.text, this.state.number);
+
     this.resetForm();
   };
 
   render() {
-    const { contacts } = this.props.state;
-    const { onRemoveContact } = this.props;
-
     return (
       <Form onSubmit={this.handleSubmit}>
-        <h1>Name</h1>
+        <p>Name</p>
 
         <Input
           onChange={this.handleChange}
@@ -42,7 +39,7 @@ class ContactForm extends React.Component {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-        <h2>Number</h2>
+        <p>Number</p>
         <Input
           onChange={this.handleChangeNumber}
           type="tel"
@@ -52,22 +49,6 @@ class ContactForm extends React.Component {
           required
         />
         <Btn type="submit">Add contact</Btn>
-        <h2>Contacts</h2>
-
-        <ContactList
-          contacts={contacts}
-          onRemoveContact={onRemoveContact}
-        ></ContactList>
-
-        {/*         
-        <h2>Contacts</h2>
-        <ul>
-          {contacts.map(contact => (
-            <li key={contact.id}>
-              {contact.name}: {contact.number}
-            </li>
-          ))}
-        </ul> */}
       </Form>
     );
   }
